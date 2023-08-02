@@ -42,11 +42,11 @@ Generates a prompt with the user's query and relevant info, and sends a request 
 def query_hf_llm(info, query, response):
 
     # Select the top 3 most relevant documents and provide them as context.
-    context = ' '.join([doc.page_content for doc in info[:3]])
+    context = ' '.join([doc.page_content for doc in info[:2]])
 
     prompt=PromptTemplate(
         template = 
-"""You are a helpful assistant working for an online mattress company called Saatva. Your role is to answer any questions the customer may have. Be as concise as possible. Limit your answers to a few sentences. Use the context below, and if the question cannot be answered with the provided information, respond with "I don't know. Answer in the style of these examples:
+"""You are a helpful assistant working for an online mattress company called Saatva. Your role is to answer any questions the customer may have. Be as concise as possible. Limit your answers to a few sentences. Use the context and examples below, and if the question cannot be answered with the provided information, respond with "I don't know".:
 ===
 User: What sizes and colors does the Saatva Dog Bed come in?
 AI: The Saatva Dog Bed comes in Small, Medium, and Large sizes. It is available in Natural Linen, Taupe Boucle, and Slate Boucle.
@@ -72,6 +72,7 @@ AI: {response}""",
     response = requests.post(os.environ.get('HUGGINGFACE_ENDPOINT'), headers=HF_ENDPOINT_HEADERS, json=json_data)
     if response.status_code == 200:
         print('RESPONSE', response.json()[0]['generated_text'])
+        print(json_data)
         return response.json()[0]['generated_text']
     else:
         print(response.status_code)
