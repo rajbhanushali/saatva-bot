@@ -1,5 +1,6 @@
 langchain==0.0.250
-pinecone==0.1.0
+pinecone-client==2.2.2
 python-dotenv==1.0.0
-Requests==2.31.0
-slack_bolt==1.18.0
+requests==2.31.0
+slack-bolt==1.18.0
+sentence-transformers==2.2.2
