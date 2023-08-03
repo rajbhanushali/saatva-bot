@@ -1,6 +1,6 @@
 # Saatva Mattress Website Chatbot
 
-Welcome to the Saatva Mattress Website Chatbot GitHub repository! This repository contains a Slack chatbot that is designed to scrape data from the saatva.com website, process it, and provide relevant responses to user queries using the power of natural language processing.
+This repository contains a Slack chatbot that is designed to scrape data from the saatva.com website, process it, and provide relevant responses to user queries using the power of natural language processing.
 
 ## Table of Contents
 
@@ -63,14 +63,6 @@ python slack_bot.py
 - Slack API keys and tokens
 - Pinecone Vector Database
 - Hugging Face inference endpoint credentials
-
-## Contributing
-
-We welcome contributions to improve and expand the functionality of this chatbot. If you encounter any issues or have ideas for enhancements, please feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
