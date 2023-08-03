@@ -8,9 +8,6 @@ import pinecone
 import requests
 import json
 
-# Initialize environment variables
-load_dotenv()
-
 # Initialize the Slack app
 app = App(
     token=os.environ.get("SLACK_BOT_TOKEN"),  # Use your "Bot User OAuth Access Token" here
@@ -69,14 +66,19 @@ AI: {response}""",
         "inputs": final_prompt,
     }
 
-    response = requests.post(os.environ.get('HUGGINGFACE_ENDPOINT'), headers=HF_ENDPOINT_HEADERS, json=json_data)
-    if response.status_code == 200:
-        print('RESPONSE', response.json()[0]['generated_text'])
-        print(json_data)
-        return response.json()[0]['generated_text']
-    else:
-        print(response.status_code)
-        print(json_data)
+    try:
+        response = requests.post(os.environ.get('HUGGINGFACE_ENDPOINT'), headers=HF_ENDPOINT_HEADERS, json=json_data)
+        if response.status_code == 200:
+            print('RESPONSE', response.json()[0]['generated_text'])
+            print(json_data)
+            return response.json()[0]['generated_text']
+        else:
+            print(response.status_code)
+            print(json_data)
+            return 'Failed to reach model.'
+    except(requests.exceptions.ConnectTimeout,
+           requests.exceptions.ConnectionError):
+        print('TIME OUT')
         return 'Failed to reach model.'
 
 # Define the message event listener
