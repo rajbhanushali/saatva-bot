@@ -63,7 +63,3 @@ python slack_bot.py
 - Slack API keys and tokens
 - Pinecone Vector Database
 - Hugging Face inference endpoint credentials
-
----
-
-Please note that this README is a basic template. You should tailor it according to your specific implementation, provide more details, and include any additional information that is relevant to your project. Good luck with your Saatva Mattress Website Chatbot! If you have any further questions, feel free to ask.
